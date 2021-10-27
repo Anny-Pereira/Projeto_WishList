@@ -1,4 +1,5 @@
-﻿using Senai_WishList_WebApi.Domains;
+﻿using Senai_WishList_WebApi.Contexts;
+using Senai_WishList_WebApi.Domains;
 using Senai_WishList_WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Senai_WishList_WebApi.Repositories
 {
     public class DesejoRepository : IDesejoRepository
     {
-        //Contexto 
+        WishListContext ctx = new WishListContext();
 
         public void Cadastrar(Desejo novoDesejo)
         {
@@ -21,7 +22,7 @@ namespace Senai_WishList_WebApi.Repositories
 
         public List<Desejo> ListarTodos()
         {
-            return ctx.DesejosToList();
+            return ctx.Desejos.ToList();
         }
     }
 }

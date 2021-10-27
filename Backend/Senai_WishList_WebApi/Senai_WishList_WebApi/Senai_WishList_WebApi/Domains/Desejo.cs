@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace Senai_WishList_WebApi.Domains
 {
-    public class Desejo
+    public partial class Desejo
     {
+        public byte IdDesejo { get; set; }
+        public byte? IdUsuario { get; set; }
+        public string DescDesejo { get; set; }
 
-        public int IdDesejo { get; set; }
-
-        public string descricao { get; set; }
-
+        public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

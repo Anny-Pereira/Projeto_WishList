@@ -42,31 +42,7 @@ namespace Senai_WishList_WebApi
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = "JwtBearer";
-                    options.DefaultChallengeScheme = "JwtBearer";
-                })
-
-                 .AddJwtBearer("JwtBearer", options => {
-                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                     {
-                         ValidateIssuer = true,
-
-                         ValidateAudience = true,
-
-                         ValidateLifetime = true,
-
-                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("chave-autenticacao")),
-
-                         ClockSkew = TimeSpan.FromHours(1),
-
-                         ValidIssuer = "WishList.WebApi",
-
-                         ValidAudience = "WishList.WebApi"
-                     };
-                 });
+          
 
 
 
@@ -90,12 +66,7 @@ namespace Senai_WishList_WebApi
 
             app.UseRouting();
 
-            //Autenticação
-            app.UseAuthentication();
-
-
-            //Autorização
-            app.UseAuthorization();
+      
 
 
             app.UseEndpoints(endpoints =>
