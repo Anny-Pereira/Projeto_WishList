@@ -47,7 +47,7 @@ namespace Senai_WishList_WebApi
                 options.AddPolicy("CorPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000/")
+                        builder.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
@@ -73,12 +73,14 @@ namespace Senai_WishList_WebApi
 
             app.UseRouting();
 
+            app.UseCors("CorPolicy");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseCors("CorPolicy");
+           
         }
     }
 }

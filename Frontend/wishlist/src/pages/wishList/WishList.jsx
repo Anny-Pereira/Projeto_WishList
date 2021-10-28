@@ -1,14 +1,14 @@
 //import React from 'react';
-import {Component} from 'react';
+import { Component } from 'react';
 
 export default class WishList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaDesejos : [],
-            idDesejo : 0,
-            idUsuario : 0,
-            descDesejo : ''
+            idUsuario: 0,
+            listaDesejos: [],
+            idDesejo: 0,
+            descDesejo: ''
         }
     }
 
@@ -19,14 +19,14 @@ export default class WishList extends Component {
         //dentro dos parenteses vamos informar qual é o end point. Por padrao ele sempre inicia como GET.
         fetch('http://localhost:5000/api/Desejos')
 
-        //
-        .then(resposta => resposta.json())
+            //
+            .then(resposta => resposta.json())
 
-        //
-        .then(dados => this.setState( { listaDesejos: dados } ) )
+            //
+            .then(dados => this.setState({ listaDesejos: dados }))
 
-        //caso ocorre algum erro, mostra no console do navegador
-        .catch(error => console.log(error))
+            //caso ocorre algum erro, mostra no console do navegador
+            .catch(error => console.log(error))
 
         //.then(this.setState({descDesejo : ''})
     };
@@ -42,36 +42,55 @@ export default class WishList extends Component {
         console.log(this.state.descDesejo);
     };
 
+
+    atualizaID = async (event) => {
+        await this.setState({
+            idUsuario: event.target.value
+        });
+        console.log(this.state.idUsuario);
+    };
+
+
+    limparCampos = () => {
+        this.setState({
+            descDesejo: '',
+            idUsuario: 0
+        })
+        console.log('Os states foram resetados!')
+    };
+
+
+
     //
     cadastrarNovoDesejo = (event) => {
-                
+
         event.preventDefault();
-            
-                fetch('http://localhost:5000/api/Desejos', {
 
-                    method: 'POST',
+        fetch('http://localhost:5000/api/Desejos', {
 
-                    body: JSON.stringify({ descDesejo : this.state.descDesejo }), //Objeto js 
+            method: 'POST',
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                
-                .then(console.log("Desejo cadastrado."))
-                
-                //caso ocorra algum erro, mostra no console do navegador.
-                .catch(error => console.log(error))
+            body: JSON.stringify({ descDesejo: this.state.descDesejo, idUsuario: this.state.idUsuario }), //Objeto js 
 
-                //
-                .then(this.buscarDesejo)       
-    };   
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+            .then(console.log("Desejo cadastrado."))
+
+            //caso ocorra algum erro, mostra no console do navegador.
+            .catch(error => console.log(error))
+
+            //
+            .then(this.buscarDesejo)
+    };
 
     componentDidMount() {
         this.buscarDesejo();
     };
 
-    render(){
+    render() {
         return (
             <div>
                 <main>
@@ -104,23 +123,25 @@ export default class WishList extends Component {
                     <section>
                         <h2>Cadastrar um novo desejo</h2>
                         <form onSubmit={this.manipularDesejo} >
-                        <div>
+                            <div>
                                 {/* valor do state é o input */}
                                 <input
                                     type="text" value={this.state.descDesejo}
                                     placeholder="Descrição do desejo"
-                                        
+
                                     //cada vez que tiver uma mudanca, (por tecla)
                                     onChange={this.atualizaDesejo}
                                 />
-                                    
-                                <button type="submit" >Cadastrar</button>
+
+                                <input type="number" placeholder="Insira seu id de usuario" onChange={this.atualizaID} />
+
+                                <button type="button" onClick={this.cadastrarNovoDesejo}>Cadastrar</button>
                                 {/* Faz a chamada da função limparCampos */}
 
-                                <button type="button" onClick={this.limparCampos} style={{ display : '' }}>
+                                <button type="submit" onClick={this.limparCampos} style={{ display: '' }}>
                                     Cancelar
                                 </button>
-                        </div>
+                            </div>
                         </form>
                     </section>
                 </main>

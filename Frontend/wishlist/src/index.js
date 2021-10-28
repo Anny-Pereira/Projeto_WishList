@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 
 import './index.css';
 
@@ -17,7 +17,7 @@ const routing = (
           <Route exact path= "/" component={App} /> {/*Home*/}
           <Route path= "/wishList" component={WishList} /> {/*Wish List*/}
           <Route path= "/notFound" component={NotFound} /> {/*404 - Not Found*/}
-          {/*<Redirect to= "/notFound" />*/} {/*Redirecionando para página 404 - Not Found, caso não encontre nenhuma rota*/}
+          <Redirect to= "/notFound" /> {/*Redirecionando para página 404 - Not Found, caso não encontre nenhuma rota*/}
         </Switch>
       </div>
     </BrowserRouter>
