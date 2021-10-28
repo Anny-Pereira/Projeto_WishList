@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Senai_WishList_WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Senai_WishList_WebApi.Controllers.DesejosController.ListarTodos">
+            <summary>
+            Lista todos os desejos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Senai_WishList_WebApi.Controllers.DesejosController.Cadastrar(Senai_WishList_WebApi.Domains.Desejo)">
+            <summary>
+            Cadastra um novo desejo
+            </summary>
+            <param name="novoDesejo">objeto que será cadastrado</param>
+            <returns></returns>
+        </member>
+        <member name="T:Senai_WishList_WebApi.Interfaces.IDesejoRepository">
+            <summary>
+            Interface responsável pela DesejoRepository
+            </summary>
+        </member>
+        <member name="M:Senai_WishList_WebApi.Interfaces.IDesejoRepository.ListarTodos">
+            <summary>
+            Lista todos os desejos
+            </summary>
+            <returns>uma lista com todos os desejos</returns>
+        </member>
+        <member name="M:Senai_WishList_WebApi.Interfaces.IDesejoRepository.Cadastrar(Senai_WishList_WebApi.Domains.Desejo)">
+            <summary>
+            Cadastra um novo desejo
+            </summary>
+            <param name="novoDesejo">objeto com as informações cadastradas</param>
+        </member>
+    </members>
+</doc>
